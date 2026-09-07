@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/lib/auth";
@@ -114,34 +115,41 @@ export default async function DashboardPage() {
 
           <div className="mt-5 grid gap-5 md:grid-cols-2">
             {user.accounts.map((account) => (
-              <article
+            <Link
                 key={account.id}
-                className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="font-semibold capitalize text-slate-950">
-                      {account.type.toLowerCase()} account
-                    </h3>
+                href={`/accounts/${account.id}`}
+                className="block rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-blue-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+                >
+                <article>
+                    <div className="flex items-start justify-between">
+                    <div>
+                        <h3 className="font-semibold capitalize text-slate-950">
+                        {account.type.toLowerCase()} account
+                        </h3>
 
-                    <p className="mt-1 text-sm text-slate-500">
-                      {account.accountNumber}
+                        <p className="mt-1 text-sm text-slate-500">
+                        {account.accountNumber}
+                        </p>
+                    </div>
+
+                    <span className="rounded-full bg-green-50 px-2.5 py-1 text-xs font-medium text-green-700">
+                        {account.status.toLowerCase()}
+                    </span>
+                    </div>
+
+                    <p className="mt-8 text-sm text-slate-500">
+                    Available balance
                     </p>
-                  </div>
 
-                  <span className="rounded-full bg-green-50 px-2.5 py-1 text-xs font-medium text-green-700">
-                    {account.status.toLowerCase()}
-                  </span>
-                </div>
+                    <p className="mt-1 text-2xl font-semibold text-slate-950">
+                    {formatMoney(account.balanceMinor, account.currency)}
+                    </p>
 
-                <p className="mt-8 text-sm text-slate-500">
-                  Available balance
-                </p>
-
-                <p className="mt-1 text-2xl font-semibold text-slate-950">
-                  {formatMoney(account.balanceMinor, account.currency)}
-                </p>
-              </article>
+                    <p className="mt-6 text-sm font-medium text-blue-700">
+                    View account details →
+                    </p>
+                </article>
+            </Link>
             ))}
           </div>
         </section>
