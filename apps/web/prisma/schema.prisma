@@ -1,0 +1,151 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  CLOSED
+}
+
+enum AccountType {
+  CHECKING
+  SAVINGS
+}
+
+enum AccountStatus {
+  ACTIVE
+  FROZEN
+  CLOSED
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
+  TRANSFER_IN
+  TRANSFER_OUT
+}
+
+enum TransferStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum LoanStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum EmploymentStatus {
+  EMPLOYED
+  SELF_EMPLOYED
+  UNEMPLOYED
+  STUDENT
+  RETIRED
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  status       UserStatus @default(ACTIVE)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  accounts         Account[]
+  beneficiaries    Beneficiary[]
+  loanApplications LoanApplication[]
+}
+
+model Account {
+  id            String        @id @default(cuid())
+  userId        String
+  accountNumber String        @unique
+  type          AccountType
+  balanceMinor  BigInt
+  currency      String        @default("NOK")
+  status        AccountStatus @default(ACTIVE)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  transfers    Transfer[]    @relation("TransferSourceAccount")
+
+  @@index([userId])
+}
+
+model Transaction {
+  id          String          @id @default(cuid())
+  accountId   String
+  type        TransactionType
+  amountMinor BigInt
+  description String
+  reference   String?
+  createdAt   DateTime        @default(now())
+
+  account Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([createdAt])
+}
+
+model Beneficiary {
+  id            String   @id @default(cuid())
+  userId        String
+  name          String
+  accountNumber String
+  bankName      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transfers Transfer[]
+
+  @@index([userId])
+}
+
+model Transfer {
+  id            String         @id @default(cuid())
+  fromAccountId String
+  beneficiaryId String
+  amountMinor   BigInt
+  reference     String?
+  status        TransferStatus @default(PENDING)
+  createdAt     DateTime       @default(now())
+  completedAt   DateTime?
+
+  fromAccount Account     @relation("TransferSourceAccount", fields: [fromAccountId], references: [id])
+  beneficiary Beneficiary @relation(fields: [beneficiaryId], references: [id])
+
+  @@index([fromAccountId])
+  @@index([beneficiaryId])
+  @@index([createdAt])
+}
+
+model LoanApplication {
+  id                String           @id @default(cuid())
+  userId            String
+  amountMinor       BigInt
+  termMonths        Int
+  annualIncomeMinor BigInt
+  employmentStatus  EmploymentStatus
+  interestRateBps   Int?
+  status            LoanStatus       @default(PENDING)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}

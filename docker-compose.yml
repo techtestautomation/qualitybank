@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: qualitybank-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: qualitybank
+      POSTGRES_PASSWORD: qualitybank
+      POSTGRES_DB: qualitybank
+    ports:
+      - "5435:5432"
+    volumes:
+      - qualitybank-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  qualitybank-postgres-data:
