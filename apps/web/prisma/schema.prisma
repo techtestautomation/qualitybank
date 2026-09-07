@@ -117,14 +117,15 @@ model Beneficiary {
 }
 
 model Transfer {
-  id            String         @id @default(cuid())
-  fromAccountId String
-  beneficiaryId String
-  amountMinor   BigInt
-  reference     String?
-  status        TransferStatus @default(PENDING)
-  createdAt     DateTime       @default(now())
-  completedAt   DateTime?
+  id             String         @id @default(cuid())
+  transferNumber String         @unique
+  fromAccountId  String
+  beneficiaryId  String
+  amountMinor    BigInt
+  reference      String?
+  status         TransferStatus @default(PENDING)
+  createdAt      DateTime       @default(now())
+  completedAt    DateTime?
 
   fromAccount Account     @relation("TransferSourceAccount", fields: [fromAccountId], references: [id])
   beneficiary Beneficiary @relation(fields: [beneficiaryId], references: [id])

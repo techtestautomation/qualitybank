@@ -72,6 +72,13 @@ export default async function DashboardPage() {
             Welcome back, {user.firstName}
           </h1>
 
+          <Link
+            href="/transfers/new"
+            className="mt-6 inline-flex rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-800"
+         >
+            Transfer money
+         </Link>
+
           <p className="mt-2 text-slate-600">
             Here&apos;s an overview of your finances.
           </p>
