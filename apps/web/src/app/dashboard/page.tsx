@@ -57,6 +57,13 @@ export default async function DashboardPage() {
               {user.firstName} {user.lastName}
             </span>
 
+            <Link
+                href="/profile"
+                className="text-sm font-medium text-slate-700 hover:text-blue-700"
+            >
+                Profile
+            </Link>
+
             <LogoutButton />
           </div>
         </div>
@@ -72,12 +79,21 @@ export default async function DashboardPage() {
             Welcome back, {user.firstName}
           </h1>
 
-          <Link
-            href="/transfers/new"
-            className="mt-6 inline-flex rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-800"
-         >
-            Transfer money
-         </Link>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+                href="/transfers/new"
+                className="inline-flex rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-800"
+            >
+                Transfer money
+            </Link>
+
+            <Link
+                href="/loans/apply"
+                className="inline-flex rounded-lg border border-blue-700 px-5 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-50"
+            >
+                Apply for loan
+            </Link>
+          </div>
 
           <p className="mt-2 text-slate-600">
             Here&apos;s an overview of your finances.
