@@ -51,3 +51,6 @@ yarn-error.log*
 .claude/
 .windsurf/
 skills-lock.json
+
+# Next.js generated TypeScript declarations
+next-env.d.ts
