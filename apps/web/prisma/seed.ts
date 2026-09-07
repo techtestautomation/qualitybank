@@ -1,4 +1,5 @@
 import "dotenv/config";
+import bcrypt from "bcryptjs";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
 
@@ -16,10 +17,12 @@ async function main() {
   await prisma.account.deleteMany();
   await prisma.user.deleteMany();
 
+  const demoPasswordHash = await bcrypt.hash("QualityBank123!", 12);
+
   const customerA = await prisma.user.create({
     data: {
       email: "qa.customer@qualitybank.test",
-      passwordHash: "TEMP_PASSWORD_HASH",
+      passwordHash: demoPasswordHash,
       firstName: "Quality",
       lastName: "Customer",
       status: "ACTIVE",
@@ -48,7 +51,7 @@ async function main() {
   const customerB = await prisma.user.create({
     data: {
       email: "test.receiver@qualitybank.test",
-      passwordHash: "TEMP_PASSWORD_HASH",
+      passwordHash: demoPasswordHash,
       firstName: "Test",
       lastName: "Receiver",
       status: "ACTIVE",
