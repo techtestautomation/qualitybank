@@ -121,14 +121,23 @@ export default async function AccountPage({
           </p>
         </section>
 
-        <section className="mt-8 rounded-2xl bg-blue-700 p-8 text-white">
-          <p className="text-sm font-medium text-blue-100">
-            Available balance
-          </p>
+        <section
+            aria-labelledby="available-balance-heading"
+            className="mt-8 rounded-2xl bg-blue-700 p-8 text-white"
+            >
+            <p
+                id="available-balance-heading"
+                className="text-sm font-medium text-blue-100"
+            >
+                Available balance
+            </p>
 
-          <p className="mt-2 text-4xl font-bold">
-            {formatMoney(account.balanceMinor, account.currency)}
-          </p>
+            <p
+                data-testid="available-balance"
+                className="mt-2 text-4xl font-bold"
+                >
+                {formatMoney(account.balanceMinor, account.currency)}
+            </p>
         </section>
 
         <section

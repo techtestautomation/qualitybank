@@ -9,11 +9,22 @@ import { LoginPage } from "../pages/login.page";
 import { resetTestData } from "../support/test-data";
 
 type QualityBankFixtures = {
+  resetData: void;
   loginPage: LoginPage;
   authenticatedPage: Page;
 };
 
 export const test = base.extend<QualityBankFixtures>({
+  resetData: [
+    async ({ request }, use) => {
+      await resetTestData(request);
+      await use();
+    },
+    {
+      auto: true,
+    },
+  ],
+
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
   },
@@ -30,10 +41,6 @@ export const test = base.extend<QualityBankFixtures>({
 
     await use(page);
   },
-});
-
-test.beforeEach(async ({ request }) => {
-  await resetTestData(request);
 });
 
 export { expect };
