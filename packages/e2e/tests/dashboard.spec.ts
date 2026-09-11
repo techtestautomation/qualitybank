@@ -2,7 +2,9 @@ import { expect, test } from "../src/fixtures/test";
 import { DashboardPage } from "../src/pages/dashboard.page";
 
 test.describe("Dashboard", () => {
-  test("authenticated customer can view account summary", async ({
+  test("authenticated customer can view account summary", 
+    { tag: "@smoke" },
+    async ({
     authenticatedPage,
   }) => {
     const dashboard = new DashboardPage(authenticatedPage);

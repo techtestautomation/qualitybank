@@ -2,7 +2,9 @@ import { expect, test } from "../src/fixtures/test";
 import { DashboardPage } from "../src/pages/dashboard.page";
 
 test.describe("Logout", () => {
-  test("customer can sign out and can no longer access protected pages", async ({
+  test("customer can sign out and can no longer access protected pages", 
+    { tag: "@smoke" },
+    async ({
     authenticatedPage,
   }) => {
     const dashboard = new DashboardPage(authenticatedPage);

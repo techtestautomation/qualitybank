@@ -5,7 +5,9 @@ import { TransferPage } from "../src/pages/transfer.page";
 import { TransferReceiptPage } from "../src/pages/transfer-receipt.page";
 
 test.describe("Transfers", () => {
-  test("customer can transfer money to a saved beneficiary", async ({
+  test("customer can transfer money to a saved beneficiary", 
+    { tag: "@smoke" },
+    async ({
     authenticatedPage,
   }) => {
     const dashboard = new DashboardPage(authenticatedPage);

@@ -3,7 +3,7 @@ import { DashboardPage } from "../src/pages/dashboard.page";
 import { ProfilePage } from "../src/pages/profile.page";
 import { testUsers } from "../src/support/test-users";
 
-test.describe("Profile", () => {
+test.describe("Profile", { tag: "@regression" }, () => {
   test("authenticated customer can view profile information", async ({
     authenticatedPage,
   }) => {

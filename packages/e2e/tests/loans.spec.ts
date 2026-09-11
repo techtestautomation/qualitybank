@@ -4,7 +4,9 @@ import { LoanPage } from "../src/pages/loan.page";
 import { LoanResultPage } from "../src/pages/loan-result.page";
 
 test.describe("Loans", () => {
-  test("employed customer can receive an approved loan decision", async ({
+  test("employed customer can receive an approved loan decision", 
+    { tag: "@smoke" },
+    async ({
     authenticatedPage,
   }) => {
     const dashboard = new DashboardPage(authenticatedPage);
@@ -53,7 +55,9 @@ test.describe("Loans", () => {
     );
   });
 
-  test("loan is rejected when requested amount exceeds income rule", async ({
+  test("loan is rejected when requested amount exceeds income rule", 
+    { tag: "@regression" },
+    async ({
     authenticatedPage,
   }) => {
     const dashboard = new DashboardPage(authenticatedPage);
@@ -88,7 +92,9 @@ test.describe("Loans", () => {
     ).toHaveCount(0);
   });
 
-  test("student customer receives a rejected loan decision", async ({
+  test("student customer receives a rejected loan decision", 
+    { tag: "@regression" },
+    async ({
     authenticatedPage,
   }) => {
     const dashboard = new DashboardPage(authenticatedPage);

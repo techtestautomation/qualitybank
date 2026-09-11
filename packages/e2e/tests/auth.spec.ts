@@ -2,7 +2,9 @@ import { expect, test } from "../src/fixtures/test";
 import { testUsers } from "../src/support/test-users";
 
 test.describe("Authentication", () => {
-  test("customer can sign in with valid credentials", async ({
+  test("customer can sign in with valid credentials", 
+    { tag: "@smoke" },
+    async ({
     page,
     loginPage,
   }) => {
@@ -22,7 +24,9 @@ test.describe("Authentication", () => {
     ).toBeVisible();
   });
 
-  test("customer cannot sign in with invalid credentials", async ({
+  test("customer cannot sign in with invalid credentials", 
+    { tag: "@regression" },
+    async ({
     page,
     loginPage,
   }) => {
@@ -40,7 +44,9 @@ test.describe("Authentication", () => {
     await expect(page).toHaveURL(/\/login$/);
   });
 
-  test("unauthenticated customer cannot access dashboard", async ({
+  test("unauthenticated customer cannot access dashboard", 
+    { tag: "@regression" },
+    async ({
     page,
   }) => {
     await page.goto("/dashboard");

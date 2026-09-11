@@ -9,7 +9,9 @@ test.describe("Accounts", () => {
     await dashboard.openCheckingAccount();
   });
 
-  test("customer can view checking account details", async ({
+  test("customer can view checking account details", 
+    { tag: "@smoke" },
+    async ({
     authenticatedPage,
   }) => {
     const account = new AccountDetailsPage(authenticatedPage);
@@ -33,7 +35,9 @@ test.describe("Accounts", () => {
     await expect(account.transactionTable).toBeVisible();
   });
 
-  test("customer can filter incoming transactions", async ({
+  test("customer can filter incoming transactions", 
+    { tag: "@regression" },
+    async ({
     authenticatedPage,
   }) => {
     const account = new AccountDetailsPage(authenticatedPage);
@@ -60,7 +64,9 @@ test.describe("Accounts", () => {
     ).toHaveCount(0);
   });
 
-  test("customer can filter outgoing transactions", async ({
+  test("customer can filter outgoing transactions", 
+    { tag: "@regression" },
+    async ({
     authenticatedPage,
   }) => {
     const account = new AccountDetailsPage(authenticatedPage);
@@ -87,7 +93,9 @@ test.describe("Accounts", () => {
     ).toHaveCount(0);
   });
 
-  test("customer can return to all transactions", async ({
+  test("customer can return to all transactions", 
+    { tag: "@regression" },
+    async ({
     authenticatedPage,
   }) => {
     const account = new AccountDetailsPage(authenticatedPage);
