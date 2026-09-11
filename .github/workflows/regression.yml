@@ -1,0 +1,84 @@
+name: Regression Suite
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  regression-tests:
+    name: QualityBank Regression Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: qualitybank
+          POSTGRES_PASSWORD: qualitybank
+          POSTGRES_DB: qualitybank
+        ports:
+          - 5435:5432
+        options: >-
+          --health-cmd="pg_isready -U qualitybank -d qualitybank"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    env:
+      DATABASE_URL: postgresql://qualitybank:qualitybank@localhost:5435/qualitybank
+      ENABLE_TEST_RESET: "true"
+      CI: "true"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5
+        with:
+          version: 11.22.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm --filter @qualitybank/web exec prisma generate --no-hints
+
+      - name: Apply database migrations
+        run: pnpm --filter @qualitybank/web exec prisma migrate deploy
+
+      - name: Seed deterministic test data
+        run: pnpm --filter @qualitybank/web db:seed
+
+      - name: Install Playwright Chromium
+        run: pnpm --filter @qualitybank/playwright exec playwright install --with-deps chromium
+
+      - name: Run regression tests
+        run: pnpm --filter @qualitybank/playwright test:regression
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: regression-playwright-report
+          path: packages/e2e/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: regression-test-results
+          path: packages/e2e/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
