@@ -1,11 +1,16 @@
+import { writeFile } from "node:fs/promises";
 import {
   test as base,
   expect,
   type Page,
 } from "@playwright/test";
-
 import { authenticateCustomer } from "./authenticated-customer";
 import { LoginPage } from "../pages/login.page";
+import {
+  buildFailureContext,
+  type ErrorResponse,
+  type FailedRequest,
+} from "../support/failure-context";
 import { resetTestData } from "../support/test-data";
 
 type QualityBankFixtures = {
@@ -30,17 +35,8 @@ export const test = base.extend<QualityBankFixtures>({
     async ({ page }, use, testInfo) => {
       const consoleErrors: string[] = [];
       const pageErrors: string[] = [];
-      const failedRequests: Array<{
-        method: string;
-        url: string;
-        error: string;
-      }> = [];
-      const errorResponses: Array<{
-        method: string;
-        url: string;
-        status: number;
-        statusText: string;
-      }> = [];
+      const failedRequests: FailedRequest[] = [];
+      const errorResponses: ErrorResponse[] = [];
 
       page.on("console", (message) => {
         if (message.type() === "error") {
@@ -76,21 +72,47 @@ export const test = base.extend<QualityBankFixtures>({
       await use();
 
       if (testInfo.status !== testInfo.expectedStatus) {
-        const diagnostics = {
-          test: testInfo.title,
-          status: testInfo.status,
-          expectedStatus: testInfo.expectedStatus,
-          url: page.url(),
+        const failureContext = buildFailureContext({
+          test: {
+            title: testInfo.title,
+            file: testInfo.file,
+            project: testInfo.project.name,
+            retry: testInfo.retry,
+            status: testInfo.status ?? "unknown",
+            expectedStatus: testInfo.expectedStatus,
+          },
+
+          pageUrl: page.url(),
+
+          playwrightErrors: testInfo.errors.map((error) => ({
+            message:
+              error.message ??
+              String(error.value ?? "Unknown Playwright error"),
+            ...(error.stack
+              ? {
+                  stack: error.stack,
+                }
+              : {}),
+          })),
+
           consoleErrors,
           pageErrors,
           failedRequests,
           errorResponses,
-        };
+        });
+
+        const diagnosticsPath = testInfo.outputPath(
+          "qualitybank-diagnostics.json",
+        );
+
+        await writeFile(
+          diagnosticsPath,
+          JSON.stringify(failureContext, null, 2),
+          "utf8",
+        );
 
         await testInfo.attach("qualitybank-diagnostics", {
-          body: Buffer.from(
-            JSON.stringify(diagnostics, null, 2),
-          ),
+          path: diagnosticsPath,
           contentType: "application/json",
         });
       }
