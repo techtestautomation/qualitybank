@@ -49,5 +49,9 @@ export class DashboardPage {
 
   async openTransfer() {
     await this.transferMoneyLink.click();
- }
+  }
+
+  async openLoanApplication() {
+    await this.applyForLoanLink.click();
+  }
 }
