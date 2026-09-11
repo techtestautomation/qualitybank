@@ -8,6 +8,7 @@ export class DashboardPage {
   readonly transferMoneyLink: Locator;
   readonly applyForLoanLink: Locator;
   readonly profileLink: Locator;
+  readonly signOutButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -37,6 +38,11 @@ export class DashboardPage {
     this.profileLink = page.getByRole("link", {
       name: /profile/i,
     });
+
+    this.signOutButton = page.getByRole("button", {
+      name: "Sign out",
+      exact: true,
+    });
   }
 
   async expectLoaded() {
@@ -53,5 +59,13 @@ export class DashboardPage {
 
   async openLoanApplication() {
     await this.applyForLoanLink.click();
+  }
+
+  async openProfile() {
+    await this.profileLink.click();
+  }
+
+  async signOut() {
+    await this.signOutButton.click();
   }
 }
