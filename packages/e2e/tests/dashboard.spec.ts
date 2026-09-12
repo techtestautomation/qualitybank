@@ -9,7 +9,7 @@ test.describe("Dashboard", () => {
   }) => {
     const dashboard = new DashboardPage(authenticatedPage);
 
-    await dashboard.expectLoaded();
+    await dashboard.expectLoaded(); 
 
     await expect(authenticatedPage).toHaveURL(/\/dashboard$/);
 

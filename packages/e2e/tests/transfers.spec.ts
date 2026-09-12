@@ -83,7 +83,9 @@ test.describe("Transfers", () => {
     );
   });
 
-  test("customer cannot transfer more than the available balance", async ({
+  test("customer cannot transfer more than the available balance", 
+    { tag: "@regression" },
+    async ({
     authenticatedPage,
     }) => {
     const dashboard = new DashboardPage(authenticatedPage);
@@ -120,7 +122,9 @@ test.describe("Transfers", () => {
     ).toHaveCount(0);
   });
 
-  test("customer cannot transfer an invalid amount", async ({
+  test("customer cannot transfer an invalid amount", 
+    { tag: "@regression" },
+    async ({
     authenticatedPage,
     }) => {
     const dashboard = new DashboardPage(authenticatedPage);
