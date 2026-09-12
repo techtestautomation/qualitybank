@@ -12,6 +12,7 @@ import {
   type FailedRequest,
 } from "../support/failure-context";
 import { resetTestData } from "../support/test-data";
+import { classifyFailure } from "../support/failure-classifier";
 
 type QualityBankFixtures = {
   resetData: void;
@@ -101,6 +102,8 @@ export const test = base.extend<QualityBankFixtures>({
           errorResponses,
         });
 
+        const classification = classifyFailure(failureContext);
+
         const diagnosticsPath = testInfo.outputPath(
           "qualitybank-diagnostics.json",
         );
@@ -113,6 +116,21 @@ export const test = base.extend<QualityBankFixtures>({
 
         await testInfo.attach("qualitybank-diagnostics", {
           path: diagnosticsPath,
+          contentType: "application/json",
+        });
+
+        const classificationPath = testInfo.outputPath(
+          "qualitybank-classification.json",
+        );
+
+        await writeFile(
+          classificationPath,
+          JSON.stringify(classification, null, 2),
+          "utf8",
+        );
+
+        await testInfo.attach("qualitybank-classification", {
+          path: classificationPath,
           contentType: "application/json",
         });
       }
