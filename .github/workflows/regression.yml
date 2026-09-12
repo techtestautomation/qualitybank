@@ -65,6 +65,40 @@ jobs:
       - name: Run regression tests
         run: pnpm --filter @qualitybank/playwright test:regression
 
+      - name: Analyze failed tests with AI
+        if: failure()
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AI_FAILURE_ANALYSIS: "true"
+        run: |
+          echo "Searching for QualityBank failure diagnostics..."
+
+          found=0
+
+          while IFS= read -r diagnostics; do
+            found=1
+
+            result_directory="$(dirname "$diagnostics")"
+            relative_directory="${result_directory#packages/e2e/}"
+
+            echo ""
+            echo "Analyzing failure:"
+            echo "  ${relative_directory}"
+
+            if ! pnpm --filter @qualitybank/playwright analyze:failure \
+              "$relative_directory"; then
+              echo "::warning::AI analysis failed for ${relative_directory}"
+            fi
+          done < <(
+            find packages/e2e/test-results \
+              -name "qualitybank-diagnostics.json" \
+              -type f
+          )
+
+          if [ "$found" -eq 0 ]; then
+            echo "No QualityBank diagnostic files were found."
+          fi
+
       - name: Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v7
