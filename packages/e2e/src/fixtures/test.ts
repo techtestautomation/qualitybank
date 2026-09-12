@@ -73,6 +73,30 @@ export const test = base.extend<QualityBankFixtures>({
       await use();
 
       if (testInfo.status !== testInfo.expectedStatus) {
+        let observedPageState:
+          | {
+              title: string;
+              visibleText: string;
+            }
+          | undefined;
+
+        try {
+          const title = await page.title();
+          const visibleText = (
+            await page.locator("body").innerText()
+          )
+            .replace(/\s+/g, " ")
+            .trim()
+            .slice(0, 4000);
+          observedPageState = {
+            title,
+            visibleText,
+          };
+
+        } catch {
+          // Diagnostic collection only.
+          // Never allow it to affect the test result.
+        }        
         const failureContext = buildFailureContext({
           test: {
             title: testInfo.title,
@@ -84,6 +108,8 @@ export const test = base.extend<QualityBankFixtures>({
           },
 
           pageUrl: page.url(),
+          
+          observedPageState,
 
           playwrightErrors: testInfo.errors.map((error) => ({
             message:

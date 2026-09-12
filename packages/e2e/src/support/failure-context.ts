@@ -16,6 +16,11 @@ export type ErrorResponse = {
   statusText: string;
 };
 
+export type ObservedPageState = {
+  title: string;
+  visibleText: string;
+};
+
 export type FailureContext = {
   schemaVersion: 1;
 
@@ -30,6 +35,7 @@ export type FailureContext = {
 
   page: {
     url: string;
+    observedState?: ObservedPageState;
   };
 
   playwrightErrors: PlaywrightFailure[];
@@ -45,6 +51,7 @@ export type FailureContext = {
 type BuildFailureContextInput = {
   test: FailureContext["test"];
   pageUrl: string;
+  observedPageState?: ObservedPageState;
   playwrightErrors: PlaywrightFailure[];
   consoleErrors: string[];
   pageErrors: string[];
@@ -68,23 +75,32 @@ export function buildFailureContext(
 
     page: {
       url: input.pageUrl,
+      ...(input.observedPageState
+        ? {
+            observedState: {
+              ...input.observedPageState,
+            },
+          }
+        : {}),
     },
 
     playwrightErrors: input.playwrightErrors.map((error) => ({
-        message: stripAnsi(error.message),
-        ...(error.stack
-            ? {
-                stack: stripAnsi(error.stack),
-            }
-            : {}),
+      message: stripAnsi(error.message),
+      ...(error.stack
+        ? {
+            stack: stripAnsi(error.stack),
+          }
+        : {}),
     })),
 
     browser: {
       consoleErrors: [...input.consoleErrors],
       pageErrors: [...input.pageErrors],
+
       failedRequests: input.failedRequests.map((request) => ({
         ...request,
       })),
+
       errorResponses: input.errorResponses.map((response) => ({
         ...response,
       })),
