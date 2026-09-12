@@ -46,7 +46,7 @@ test.describe("Profile", { tag: "@regression" }, () => {
     await expect(authenticatedPage).toHaveURL(/\/dashboard$/);
     await expect(
       authenticatedPage.getByRole("heading", {
-        name: /welcome back/i,
+        name: /welcome back Wrong/i,
       }),
     ).toBeVisible();
   });
