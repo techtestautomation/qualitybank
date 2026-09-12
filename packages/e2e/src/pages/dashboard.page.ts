@@ -17,7 +17,7 @@ export class DashboardPage {
       name: /welcome/i,
     });
 
-    this.totalBalance = page.getByText("173 651,00 kr", {
+    this.totalBalance = page.getByText("173 650,00 kr", {
         exact: true,
     });
 

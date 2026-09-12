@@ -16,6 +16,9 @@ import type {
 import type {
   FailureContext,
 } from "../support/failure-context";
+import {
+  analyzeFailureWithOpenAI,
+} from "./openai-analyzer";
 
 async function main() {
   const directory = process.argv
@@ -56,8 +59,17 @@ async function main() {
     classification,
   );
 
-  const analysis = analyzeFailureLocally(request);
+  const useAi =
+    process.env.AI_FAILURE_ANALYSIS === "true";
 
+  const analysis = useAi
+    ? await analyzeFailureWithOpenAI(request)
+    : analyzeFailureLocally(request);
+
+  console.log(
+    `Failure analyzer: ${useAi ? "OpenAI" : "local"}`,
+  );
+  
   await writeFile(
     outputPath,
     JSON.stringify(analysis, null, 2),
