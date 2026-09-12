@@ -1,16 +1,16 @@
 # QualityBank
 
-QualityBank is a realistic banking demo application and Quality Engineering reference project built to demonstrate production-style test automation with **Playwright, TypeScript, CI/CD, deterministic test data, structured diagnostics, and AI-assisted failure analysis**.
+QualityBank is a realistic banking demo application and Quality Engineering reference project built to demonstrate production-style test automation with **Playwright, TypeScript, CI/CD, Deterministic Test Data, Structured Diagnostics, and AI-Assisted Failure Analysis**.
 
 The repository contains:
 
-- a realistic banking application under test
-- a maintainable Playwright automation framework
-- deterministic test-data infrastructure
-- pull-request and regression quality gates
-- structured machine-readable failure diagnostics
-- deterministic failure classification
-- AI-assisted root-cause analysis for failed CI tests
+- A Realistic Banking Application Under Test
+- A Maintainable Playwright Automation Framework
+- Deterministic Test-Data Infrastructure
+- Pull-Request and Regression Quality Gates
+- Structured Machine-Readable Failure Diagnostics
+- Deterministic Failure Classification
+- AI-Assisted Root-Cause Analysis for Failed CI Tests
 
 > **QualityBank is a demonstration application only. It is not a real banking product.**
 
@@ -22,21 +22,21 @@ This repository is intentionally more than a collection of browser tests.
 
 It demonstrates how a modern Quality Engineering system can be designed around:
 
-- realistic business workflows
-- deterministic execution
-- test isolation
-- semantic locator strategies
-- API-assisted test setup
-- reusable Playwright fixtures
+- Realistic Business Workflows
+- Deterministic Execution
+- Test Isolation
+- Semantic Locator Strategies
+- API-Assisted Test Setup
+- Reusable Playwright Fixtures
 - Page Objects
-- smoke and regression separation
-- GitHub Actions quality gates
-- traces, screenshots, video, and HTML reporting
-- structured JSON failure evidence
-- deterministic failure classification
-- bounded observed page-state capture
-- AI-assisted root-cause diagnosis
-- safe separation between AI analysis and test pass/fail decisions
+- Smoke and Regression Separation
+- GitHub Actions Quality Gates
+- Traces, Screenshots, Video, and HTML Reporting
+- Structured JSON Failure Evidence
+- Deterministic Failure Classification
+- Bounded Observed Page-State Capture
+- AI-Assisted Root-Cause Diagnosis
+- Safe Separation Between AI Analysis and Test Pass/Fail Decisions
 
 The banking application itself is intentionally feature-frozen so development can focus on the Quality Engineering capabilities surrounding it.
 
@@ -68,26 +68,26 @@ The banking application itself is intentionally feature-frozen so development ca
               PASS          FAILURE
                 │             │
                 │             ▼
-                │     Playwright artifacts
-                │      • trace
-                │      • screenshot
-                │      • video
-                │      • HTML report
+                │     Playwright Artifacts
+                │      • Trace
+                │      • Screenshot
+                │      • Video
+                │      • HTML Report
                 │             │
                 │             ▼
                 │      FailureContext JSON
                 │             │
                 │             ▼
-                │   Deterministic classifier
+                │   Deterministic Classifier
                 │             │
                 │             ▼
-                │     AI failure analysis
+                │     AI Failure Analysis
                 │             │
                 │             ▼
-                │   Root-cause diagnosis
+                │   Root-Cause Diagnosis
                 │
                 ▼
-           CI quality gate
+           CI Quality Gate
 ```
 
 AI analysis is deliberately **outside the test pass/fail decision path**.
@@ -100,22 +100,22 @@ A test failure remains a test failure regardless of whether AI analysis succeeds
 
 QualityBank currently supports:
 
-- customer authentication
-- protected banking dashboard
-- checking and savings accounts
-- account details
-- transaction history
-- incoming/outgoing transaction filtering
-- saved beneficiaries
-- beneficiary transfers
-- transfer validation
-- transfer receipts
-- account balance mutation
-- transaction ledger updates
-- deterministic personal-loan decisions
-- customer profile
-- logout
-- protected-route handling
+- Customer Authentication
+- Protected Banking Dashboard
+- Checking and Savings Accounts
+- Account Details
+- Transaction History
+- Incoming/Outgoing Transaction Filtering
+- Saved Beneficiaries
+- Beneficiary Transfers
+- Transfer Validation
+- Transfer Receipts
+- Account Balance Mutation
+- Transaction Ledger Updates
+- Deterministic Personal-Loan Decisions
+- Customer Profile
+- Logout
+- Protected-Route Handling
 
 The application is designed specifically to provide realistic workflows for Quality Engineering and automation demonstrations.
 
@@ -137,39 +137,38 @@ The application is designed specifically to provide realistic workflows for Qual
 
 - Playwright
 - TypeScript
-- Playwright fixtures
+- Playwright Fixtures
 - Page Object Model
 - APIRequestContext
-- semantic locators
-- HTML reporting
-- Playwright traces
-- screenshots on failure
-- video on failure
+- Semantic Locators
+- HTML Reporting
+- Playwright Traces
+- Screenshots on Failure
+- Video on Failure
 
 ## Failure Analysis
 
-- normalized JSON failure context
-- deterministic failure classifier
-- bounded visible-page-state capture
-- OpenAI-assisted root-cause analysis
-- structured AI analysis output
+- Normalized JSON Failure Context
+- Deterministic Failure Classifier
+- Bounded Visible Page-State Capture
+- OpenAI-Assisted Root-Cause Analysis
+- Structured AI Analysis Output
 
 ## CI/CD
 
 - GitHub Actions
-- PostgreSQL service containers
-- deterministic database migrations and seeding
-- pull-request smoke quality gate
-- main-branch regression suite
-- Playwright artifact retention
-- AI analysis on failed regression runs
+- PostgreSQL Service Containers
+- Deterministic Database Migrations and Seeding
+- Pull-Request Smoke Quality Gate
+- Main-Branch Regression Suite
+- Playwright Artifact Retention
+- AI Analysis on Failed Regression Runs
 
 ## Tooling
 
 - Node.js 24
-- pnpm workspace
+- pnpm Workspace
 - Docker Compose
-- GitHub Actions
 
 ---
 
@@ -236,11 +235,11 @@ The complete Playwright suite currently contains **26 deterministic tests**.
 The current tagged suites include:
 
 ```text
-7 smoke tests
-19 regression tests
+7 Smoke Tests
+19 Regression Tests
 ```
 
-The regression suite includes both customer workflow tests and automated tests for the failure-analysis infrastructure itself.
+The Regression Suite includes both customer workflow tests and automated tests for the Failure Analysis infrastructure itself.
 
 ---
 
@@ -248,63 +247,63 @@ The regression suite includes both customer workflow tests and automated tests f
 
 ### Health
 
-- application health
-- API health
-- database connectivity
+- Application Health
+- API Health
+- Database Connectivity
 
 ### Authentication
 
-- valid customer login
-- invalid credentials
-- protected-route access
+- Valid Customer Login
+- Invalid Credentials
+- Protected-Route Access
 
 ### Dashboard
 
-- authenticated account summary
+- Authenticated Account Summary
 
 ### Accounts
 
-- account details
-- incoming transaction filtering
-- outgoing transaction filtering
-- restoration of complete transaction history
+- Account Details
+- Incoming Transaction Filtering
+- Outgoing Transaction Filtering
+- Restoration of Complete Transaction History
 
 ### Transfers
 
-- successful beneficiary transfer
-- transfer receipt verification
-- account balance mutation
-- transaction ledger verification
-- insufficient-funds validation
-- invalid amount validation
+- Successful Beneficiary Transfer
+- Transfer Receipt Verification
+- Account Balance Mutation
+- Transaction Ledger Verification
+- Insufficient-Funds Validation
+- Invalid Amount Validation
 
 ### Loans
 
-- approved employed-customer scenario
-- rejection when requested amount exceeds eligibility rules
-- rejection for student employment status
+- Approved Employed-Customer Scenario
+- Rejection When Requested Amount Exceeds Eligibility Rules
+- Rejection for Student Employment Status
 
 ### Profile
 
-- customer information
-- navigation back to dashboard
+- Customer Information
+- Navigation Back to Dashboard
 
 ### Logout
 
-- session termination
-- protected-route verification after logout
+- Session Termination
+- Protected-Route Verification After Logout
 
 ### Failure-Analysis Infrastructure
 
-- normalized failure-context generation
-- deterministic failure classification
-- network-failure classification
-- HTTP-error classification
-- browser page-error classification
-- assertion-failure classification
-- unknown-failure fallback
-- real Playwright assertion pattern classification
-- structured AI request generation
+- Normalized Failure-Context Generation
+- Deterministic Failure Classification
+- Network-Failure Classification
+- HTTP-Error Classification
+- Browser Page-Error Classification
+- Assertion-Failure Classification
+- Unknown-Failure Fallback
+- Real Playwright Assertion-Pattern Classification
+- Structured AI Request Generation
 
 ---
 
@@ -314,12 +313,12 @@ The regression suite includes both customer workflow tests and automated tests f
 
 Authentication and primary customer workflows are tested through the browser.
 
-Semantic Playwright locators are preferred in this order:
+Semantic Playwright Locators are preferred in this order:
 
 1. `getByRole`
 2. `getByLabel`
-3. user-facing text
-4. stable `data-testid` attributes only where they improve testability
+3. User-Facing Text
+4. Stable `data-testid` Attributes only where they improve testability
 
 This encourages accessible UI design while avoiding brittle implementation-dependent selectors.
 
@@ -343,7 +342,7 @@ QualityBank exposes a test-only reset endpoint:
 POST /api/test/reset
 ```
 
-The Playwright fixture invokes this automatically before each applicable test.
+The Playwright Fixture invokes this automatically before each applicable test.
 
 Every test therefore begins from the same known application state.
 
@@ -370,10 +369,10 @@ This is an intentional engineering trade-off rather than an accidental framework
 
 A future high-scale strategy could introduce:
 
-- per-worker databases
-- per-worker schemas
-- dynamically provisioned users
-- isolated test-data namespaces
+- Per-Worker Databases
+- Per-Worker Schemas
+- Dynamically Provisioned Users
+- Isolated Test-Data Namespaces
 
 For the current portfolio workload, deterministic execution is prioritized over unnecessary parallelism.
 
@@ -459,7 +458,7 @@ Generated test artifacts are stored under:
 packages/e2e/test-results
 ```
 
-The HTML report is generated under:
+The HTML Report is generated under:
 
 ```text
 packages/e2e/playwright-report
@@ -477,21 +476,21 @@ Shared Playwright lifecycle behaviour is implemented under:
 packages/e2e/src/fixtures
 ```
 
-The fixture layer handles:
+The custom Fixture Layer handles:
 
-- deterministic database reset
-- API-assisted authentication
-- authenticated browser state
-- reusable Page Object injection
-- browser console-error collection
-- page-error collection
-- failed-request collection
-- HTTP-error collection
-- bounded observed page-state capture
-- normalized failure diagnostics
-- deterministic failure classification
+- Deterministic Database Reset
+- API-Assisted Authentication
+- Authenticated Browser State
+- Reusable Page Object Injection
+- Browser Console-Error Collection
+- Page-Error Collection
+- Failed-Request Collection
+- HTTP-Error Collection
+- Bounded Observed Page-State Capture
+- Normalized Failure Diagnostics
+- Deterministic Failure Classification
 
-Tests consume the QualityBank fixture rather than Playwright's base fixture directly.
+Tests consume the QualityBank Fixture rather than Playwright's base fixture directly.
 
 ---
 
@@ -526,11 +525,11 @@ Business assertions remain primarily in the test specifications so that tests re
 
 When a test fails, native Playwright evidence can include:
 
-- HTML report
-- trace
-- screenshot
-- video
-- stack trace
+- HTML Report
+- Trace
+- Screenshot
+- Video
+- Stack Trace
 
 QualityBank supplements these with:
 
@@ -538,22 +537,22 @@ QualityBank supplements these with:
 qualitybank-diagnostics.json
 ```
 
-The normalized diagnostic contract includes:
+The Normalized Diagnostic Contract includes:
 
-- test title
-- test file
-- Playwright project
-- retry number
-- actual status
-- expected status
-- page URL
-- bounded observed visible page text
-- page title
-- Playwright assertion errors
-- browser console errors
-- uncaught page errors
-- failed requests
-- HTTP 4xx/5xx responses
+- Test Title
+- Test File
+- Playwright Project
+- Retry Number
+- Actual Status
+- Expected Status
+- Page URL
+- Bounded Observed Visible Page Text
+- Page Title
+- Playwright Assertion Errors
+- Browser Console Errors
+- Uncaught Page Errors
+- Failed Requests
+- HTTP 4xx/5xx Responses
 
 The purpose is to convert an otherwise human-oriented failure into structured evidence that can be consumed programmatically.
 
@@ -561,7 +560,7 @@ The purpose is to convert an otherwise human-oriented failure into structured ev
 
 # Deterministic Failure Classification
 
-The structured failure context is first evaluated without AI.
+The Structured Failure Context is first evaluated without AI.
 
 The classifier currently recognizes:
 
@@ -581,17 +580,17 @@ For example, a failing API request should be treated as stronger underlying evid
 Typical priority:
 
 ```text
-Network failure
+Network Failure
       ↓
 HTTP 5xx
       ↓
-Page error
+Page Error
       ↓
 HTTP 4xx
       ↓
-Assertion failure
+Assertion Failure
       ↓
-Console error
+Console Error
       ↓
 Unknown
 ```
@@ -602,7 +601,7 @@ This layer remains fully deterministic and requires no external AI service.
 
 # AI-Assisted Failure Analysis
 
-After deterministic classification, a failed test can optionally be sent for AI-assisted diagnosis.
+After Deterministic Classification, a failed test can optionally be sent for AI-Assisted Diagnosis.
 
 The analysis input consists of:
 
@@ -643,7 +642,7 @@ A typical result contains:
 
 # Example: AI Root-Cause Analysis
 
-A controlled regression failure was introduced to validate the complete CI pipeline.
+A controlled Regression Failure was introduced to validate the complete CI pipeline.
 
 The test expected a dashboard heading matching:
 
@@ -660,15 +659,15 @@ Welcome back, Quality
 There were:
 
 ```text
-0 console errors
-0 page errors
-0 failed requests
-0 HTTP error responses
+0 Console Errors
+0 Page Errors
+0 Failed Requests
+0 HTTP Error Responses
 ```
 
-The deterministic classifier identified the failure as an assertion failure.
+The Deterministic Classifier identified the failure as an `ASSERTION_FAILURE`.
 
-The AI analysis concluded that the assertion expected customer text that did not match the observed dashboard content and recommended inspecting the assertion and controlled customer data.
+The AI Analysis concluded that the assertion expected customer text that did not match the observed dashboard content and recommended inspecting the assertion and controlled customer data.
 
 This is more useful than simply reporting:
 
@@ -697,12 +696,12 @@ to:
 The captured page state contained:
 
 ```text
-Total balance       173 650,00 kr
+Total Balance       173 650,00 kr
 Checking Account    125 450,00 kr
 Savings Account      48 200,00 kr
 ```
 
-The AI analysis identified that:
+The AI Analysis identified that:
 
 ```text
 125 450 + 48 200 = 173 650
@@ -719,23 +718,23 @@ This demonstrates reasoning across multiple pieces of captured failure evidence 
 AI is deliberately treated as a diagnostic assistant, not a test oracle.
 
 ```text
-Successful test
-    → no AI call
+Successful Test
+    → No AI Call
 
-Failed test
-    → deterministic evidence captured
-    → deterministic classification
-    → optional AI diagnosis
+Failed Test
+    → Deterministic Evidence Captured
+    → Deterministic Classification
+    → Optional AI Diagnosis
 ```
 
-The AI layer:
+The AI Layer:
 
-- cannot turn a failed test into a passed test
-- cannot modify test results
-- is not required for normal Playwright execution
-- is not required for deterministic classification
-- can fail independently without hiding the original failure
-- runs only when failure analysis is requested
+- Cannot turn a failed test into a passed test
+- Cannot modify test results
+- Is not required for normal Playwright execution
+- Is not required for Deterministic Classification
+- Can fail independently without hiding the original failure
+- Runs only when Failure Analysis is requested
 
 This keeps the test system deterministic while allowing AI to improve debugging efficiency.
 
@@ -745,33 +744,33 @@ This keeps the test system deterministic while allowing AI to improve debugging 
 
 The system intentionally does not send unrestricted browser state.
 
-The bounded diagnostic context includes:
+The Bounded Diagnostic Context includes:
 
-- page URL
-- page title
-- limited visible body text
-- assertion failure
-- console errors
-- page errors
-- request URLs and status information
+- Page URL
+- Page Title
+- Limited Visible Body Text
+- Assertion Failure
+- Console Errors
+- Page Errors
+- Request URLs and Status Information
 
 The implementation does **not intentionally capture**:
 
-- cookies
-- authorization headers
-- local storage
-- session tokens
-- passwords
-- unrestricted HTML
-- request bodies
+- Cookies
+- Authorization Headers
+- Local Storage
+- Session Tokens
+- Passwords
+- Unrestricted HTML
+- Request Bodies
 
-Observed visible text is bounded before being included in the diagnostic context.
+Observed visible text is bounded before being included in the Diagnostic Context.
 
 ---
 
 # Running Failure Analysis Locally
 
-The deterministic analyzer can process a failed test result directory:
+The Deterministic Analyzer can process a failed test result directory:
 
 ```bash
 pnpm --filter @qualitybank/playwright analyze:failure \
@@ -784,7 +783,7 @@ This produces:
 qualitybank-ai-analysis.json
 ```
 
-using the local deterministic analysis path.
+using the Local Deterministic Analysis path.
 
 ---
 
@@ -806,7 +805,7 @@ pnpm --filter @qualitybank/playwright analyze:failure \
   test-results/<failed-test-directory>
 ```
 
-The failure-analysis runner switches from the local analyzer to the OpenAI provider.
+The Failure-Analysis Runner switches from the Local Analyzer to the OpenAI Provider.
 
 Successful tests do not generate API calls.
 
@@ -818,25 +817,25 @@ QualityBank uses two GitHub Actions workflows.
 
 ---
 
-## Pull Request Quality Gate
+## Pull-Request Quality Gate
 
 ```text
 .github/workflows/quality-gate.yml
 ```
 
-The pull-request quality gate performs the fast validation path, including:
+The Pull-Request Quality Gate performs the fast validation path, including:
 
-- dependency installation
-- Prisma client generation
-- database migration
-- deterministic database seed
-- TypeScript validation
-- linting
-- application build
-- Playwright browser setup
-- smoke-test execution
-- Playwright report retention
-- failure artifact retention
+- Dependency Installation
+- Prisma Client Generation
+- Database Migration
+- Deterministic Database Seed
+- TypeScript Validation
+- Linting
+- Application Build
+- Playwright Browser Setup
+- Smoke-Test Execution
+- Playwright Report Retention
+- Failure Artifact Retention
 
 This workflow runs for pull requests targeting `main`.
 
@@ -850,7 +849,7 @@ It can also be started manually.
 .github/workflows/regression.yml
 ```
 
-The broader regression workflow runs on pushes to:
+The broader Regression Workflow runs on pushes to:
 
 ```text
 main
@@ -858,22 +857,22 @@ main
 
 It performs:
 
-- PostgreSQL service startup
-- dependency installation
-- Prisma client generation
-- database migration
-- deterministic data seeding
-- Chromium installation
-- regression-suite execution
-- Playwright artifact retention
+- PostgreSQL Service Startup
+- Dependency Installation
+- Prisma Client Generation
+- Database Migration
+- Deterministic Data Seeding
+- Chromium Installation
+- Regression-Suite Execution
+- Playwright Artifact Retention
 
-If regression tests fail, an additional step:
+If Regression Tests fail, an additional step:
 
 ```text
 Analyze failed tests with AI
 ```
 
-searches the Playwright result directories for QualityBank diagnostic artifacts and runs AI analysis for each detected failure.
+searches the Playwright result directories for QualityBank Diagnostic Artifacts and runs AI Analysis for each detected failure.
 
 A normal successful run skips this step entirely.
 
@@ -885,29 +884,29 @@ A normal successful run skips this step entirely.
 Push to main
      │
      ▼
-Regression tests
+Regression Tests
      │
  ┌───┴──────────┐
  │              │
 PASS           FAIL
  │              │
  │              ▼
- │       Capture diagnostics
+ │       Capture Diagnostics
  │              │
  │              ▼
- │       Classify failure
+ │       Classify Failure
  │              │
  │              ▼
- │        AI diagnosis
+ │        AI Diagnosis
  │              │
  │              ▼
- │       Upload artifacts
+ │       Upload Artifacts
  │
  ▼
-Workflow succeeds
+Workflow Succeeds
 ```
 
-Importantly, AI analysis does not replace or suppress the original failed regression result.
+Importantly, AI Analysis does not replace or suppress the original failed Regression result.
 
 ---
 
@@ -980,7 +979,7 @@ DATABASE_URL="postgresql://qualitybank:qualitybank@localhost:5435/qualitybank"
 ENABLE_TEST_RESET=true
 ```
 
-The test reset endpoint should not be enabled in production.
+The Test Reset Endpoint should not be enabled in production.
 
 ---
 
@@ -990,7 +989,7 @@ The test reset endpoint should not be enabled in production.
 pnpm --filter @qualitybank/web db:seed
 ```
 
-The deterministic demo customer is:
+The deterministic Demo Customer is:
 
 ```text
 Email:    qa.customer@qualitybank.test
@@ -1063,7 +1062,7 @@ pnpm build
 
 ## Determinism Before Parallelism
 
-The current database-reset strategy favors repeatability over unnecessary test concurrency.
+The current Database Reset strategy favors repeatability over unnecessary test concurrency.
 
 `workers: 1` is therefore deliberate.
 
@@ -1085,7 +1084,7 @@ User behaviour is still tested through the browser where the browser experience 
 
 ## Assertions Stay Close to Tests
 
-Page Objects encapsulate reusable interaction behaviour, while most assertions remain visible in the specifications.
+Page Objects encapsulate reusable interaction behaviour, while most assertions remain visible in the Test Specifications.
 
 This avoids creating overly abstract test frameworks that are difficult to understand.
 
@@ -1093,15 +1092,15 @@ This avoids creating overly abstract test frameworks that are difficult to under
 
 ## Diagnostics Must Not Break Tests
 
-Diagnostic capture is defensive.
+Diagnostic Capture is defensive.
 
-If observed page-state collection fails, it must not change the original test result.
+If Observed Page-State Collection fails, it must not change the original test result.
 
 ---
 
 ## AI Is Advisory
 
-AI provides a probable diagnosis and recommended investigation steps.
+AI provides a Probable Diagnosis and Recommended Investigation Steps.
 
 It does not determine whether the build succeeds.
 
@@ -1111,31 +1110,31 @@ It does not determine whether the build succeeds.
 
 QualityBank demonstrates:
 
-- deterministic environments
-- independent scenarios
-- API-assisted setup
-- API-assisted authentication
-- reusable fixture composition
-- Page Object design
-- semantic locator strategies
-- accessibility-oriented testability
-- business-rule validation
-- positive testing
-- negative testing
-- mutation verification
-- transaction ledger validation
-- protected-route testing
-- database-reset isolation
-- smoke/regression separation
-- CI quality gates
-- diagnostic artifact collection
-- structured machine-readable evidence
-- deterministic failure classification
-- observed-state capture
-- AI-assisted root-cause analysis
-- explicit AI trust boundaries
-- failure artifact retention
-- clear engineering trade-offs
+- Deterministic Environments
+- Independent Test Scenarios
+- API-Assisted Test Setup
+- API-Assisted Authentication
+- Reusable Fixture Composition
+- Page Object Design
+- Semantic Locator Strategies
+- Accessibility-Oriented Testability
+- Business-Rule Validation
+- Positive Testing
+- Negative Testing
+- State Mutation Verification
+- Transaction Ledger Validation
+- Protected-Route Testing
+- Database Reset Isolation
+- Smoke/Regression Separation
+- CI Quality Gates
+- Diagnostic Artifact Collection
+- Structured Machine-Readable Evidence
+- Deterministic Failure Classification
+- Observed Page-State Capture
+- AI-Assisted Root-Cause Analysis
+- Explicit AI Trust Boundaries
+- Failure Artifact Retention
+- Clear Engineering Trade-Offs
 
 ---
 
@@ -1143,7 +1142,7 @@ QualityBank demonstrates:
 
 ## QualityBank Application
 
-**Complete / feature-frozen**
+**Complete / Feature-Frozen**
 
 The application provides sufficient realistic workflows for automation demonstrations.
 
@@ -1151,22 +1150,22 @@ The application provides sufficient realistic workflows for automation demonstra
 
 ## Playwright Automation Framework
 
-**Complete for portfolio scope**
+**Complete for Portfolio Scope**
 
 Current capabilities include:
 
-- 26 deterministic automated tests
-- 7 smoke tests
-- 19 regression tests
+- 26 Deterministic Automated Tests
+- 7 Smoke Tests
+- 19 Regression Tests
 - Page Objects
-- custom fixtures
-- deterministic database reset
-- API authentication
-- structured diagnostics
-- traces
-- screenshots
-- video
-- HTML reporting
+- Custom Playwright Fixtures
+- Deterministic Database Reset
+- API-Assisted Authentication
+- Structured Failure Diagnostics
+- Playwright Traces
+- Screenshots on Failure
+- Video on Failure
+- HTML Reporting
 
 ---
 
@@ -1176,14 +1175,14 @@ Current capabilities include:
 
 Implemented:
 
-- pull-request quality gate
-- main-branch regression execution
-- PostgreSQL service
-- migrations
-- deterministic seeding
-- smoke and regression separation
-- report retention
-- failure artifact retention
+- Pull-Request Quality Gate
+- Main-Branch Regression Execution
+- PostgreSQL Service Container
+- Database Migrations
+- Deterministic Database Seeding
+- Smoke and Regression Separation
+- Playwright Report Retention
+- Failure Artifact Retention
 
 ---
 
@@ -1193,17 +1192,17 @@ Implemented:
 
 Implemented and validated:
 
-- normalized failure context
-- ANSI-cleaned Playwright errors
-- deterministic failure classification
-- bounded observed page state
-- structured AI request contract
-- local deterministic analysis
-- OpenAI analysis provider
-- structured JSON analysis output
-- GitHub Actions execution on regression failure
-- secure GitHub API-key secret
-- no AI call for successful test runs
+- Normalized Failure Context
+- ANSI-Cleaned Playwright Errors
+- Deterministic Failure Classification
+- Bounded Observed Page State
+- Structured AI Request Contract
+- Local Deterministic Analysis
+- OpenAI Analysis Provider
+- Structured JSON Analysis Output
+- GitHub Actions Execution on Regression Failure
+- Secure GitHub API-Key Secret
+- No AI Call for Successful Test Runs
 
 ---
 
@@ -1215,16 +1214,16 @@ Its purpose is to demonstrate how modern test automation can be engineered aroun
 
 The focus is on the characteristics expected of professional automation systems:
 
-- maintainability
-- deterministic execution
-- realistic business coverage
-- test isolation
-- debuggability
-- CI/CD integration
-- failure triage
-- secure secret handling
-- testability
-- clear architectural decisions
-- responsible use of AI in Quality Engineering
+- Maintainability
+- Deterministic Execution
+- Realistic Business Coverage
+- Test Isolation
+- Debuggability
+- CI/CD Integration
+- Failure Triage
+- Secure Secret Handling
+- Testability
+- Clear Architectural Decisions
+- Responsible Use of AI in Quality Engineering
 
 The banking application exists primarily as a realistic system under test for demonstrating these engineering practices.
